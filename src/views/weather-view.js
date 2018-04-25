@@ -27,10 +27,7 @@ class WeatherView extends PromptView {
     const date = matchedEntities.date && new Date(matchedEntities.date.values[0].milliseconds);
 
     // Print info of obtained information
-    if (
-      Object.keys(matchedEntities).filter(key => matchedEntities[key]).length !== 0 &&
-      missingEntities.size !== 0
-    ) {
+    if (Object.keys(matchedEntities).length !== 0 && missingEntities.size !== 0) {
       messages.push(new BotTextMessage(makeInfo(matchedEntities)));
     }
 
