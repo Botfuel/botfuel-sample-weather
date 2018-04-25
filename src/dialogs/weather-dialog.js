@@ -1,12 +1,19 @@
 const request = require('request-promise-native');
 const { PromptDialog } = require('botfuel-dialog');
+const { Logger } = require('botfuel-dialog');
 
-class Weather extends PromptDialog {
+const logger = Logger('WeatherDialog');
+
+class WeatherDialog extends PromptDialog {
   async dialogWillDisplay(userMessage, { matchedEntities, missingEntities }) {
+    logger.debug('dialogWillDisplay', { matchedEntities, missingEntities });
+
     if (missingEntities.size === 0) {
       const date = matchedEntities.date && new Date(matchedEntities.date.values[0].milliseconds);
       const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
       const location = matchedEntities.location && matchedEntities.location.values[0].value;
+
+      logger.info('dialogWillDisplay', { formattedDate, location });
 
       const options = {
         uri: 'http://api.worldweatheronline.com/premium/v1/weather.ashx',
@@ -30,7 +37,7 @@ class Weather extends PromptDialog {
   }
 }
 
-Weather.params = {
+WeatherDialog.params = {
   namespace: 'weather',
   entities: {
     location: {
@@ -43,4 +50,4 @@ Weather.params = {
   },
 };
 
-module.exports = Weather;
+module.exports = WeatherDialog;

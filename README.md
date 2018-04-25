@@ -19,10 +19,16 @@ cd botfuel-sample-weather
 npm install
 ```
 
+Train the bot:
+
+```shell
+npm run train shell-config
+```
+
 Start the bot:
 
 ```shell
-BOTFUEL_APP_TOKEN=<YOUR_BOT_ID> BOTFUEL_APP_ID=<YOUR_BOTFUEL_APP_ID> BOTFUEL_APP_KEY=<YOUR_BOTFUEL_APP_KEY> npm start
+BOTFUEL_APP_TOKEN=<YOUR_BOT_ID> BOTFUEL_APP_ID=<YOUR_BOTFUEL_APP_ID> BOTFUEL_APP_KEY=<YOUR_BOTFUEL_APP_KEY> npm start shell-config
 ```
 
 If you set your app credentials right, you should see:
