@@ -22,14 +22,14 @@ const logger = Logger('WeatherDialog');
 
 class WeatherDialog extends PromptDialog {
   async dialogWillDisplay(userMessage, { matchedEntities, missingEntities }) {
-    logger.debug('dialogWillDisplay', { matchedEntities, missingEntities });
+    // logger.debug('dialogWillDisplay', { matchedEntities, missingEntities });
 
     if (missingEntities.size === 0) {
       const date = matchedEntities.date && new Date(matchedEntities.date.values[0].milliseconds);
       const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
       const location = matchedEntities.location && matchedEntities.location.values[0].value;
 
-      logger.info('dialogWillDisplay', { formattedDate, location });
+      // logger.info('dialogWillDisplay', { formattedDate, location });
 
       const options = {
         uri: 'http://api.worldweatheronline.com/premium/v1/weather.ashx',
