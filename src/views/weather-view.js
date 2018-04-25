@@ -39,13 +39,15 @@ class WeatherView extends PromptView {
 
     if (missingEntities.size === 0) {
       messages.push(new BotTextMessage(`Voila la météo pour ${location} le ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}.`));
-      const temp = weatherData.temp_C;
-      const description = weatherData.lang_fr['0'].value;
-      if ((description === 'Pluie légère') || (description === 'Pluie éparse à proximité')) {
-        messages.push(new BotTextMessage(`Il y a ${description.toLowerCase()} et il fait ${temp} degrés Celsius.`));
-      } else {
-        messages.push(new BotTextMessage(`Il est ${description.toLowerCase()} et il fait ${temp} degrés Celsius.`));
+     /* if (date - Date.now() > 15) {
+        weatherData.climateAverages[0].month.[${date.getMonth()}]
       }
+      else { */
+      const maxTemp = weatherData.weather[0].maxtempC;
+      const minTemp = weatherData.weather[0].mintempC;
+      const description = weatherData.weather[0].hourly[0].lang_fr['0'].value;
+      messages.push(new BotTextMessage(`${description}, ${minTemp}-${maxTemp} degrés Celsius`));
+      // }
       messages.push(new BotImageMessage(WebAdapter.getStaticUrl(`images/${description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}.jpg`)));
     }
 

@@ -9,11 +9,11 @@ class NameView extends PromptView {
       const capitalizedName = `${firstLetter.toUpperCase()}${letters.join('')}`;
 
       return [
-        new BotTextMessage(`Nice to meet you ${capitalizedName}!`),
+        new BotTextMessage(`Enchanté, ${capitalizedName}!`),
       ];
     }
 
-    return [new BotTextMessage('Sorry, I did not understand!')];
+    return [new BotTextMessage("J'ai pas compris!")];
   }
 }
 
