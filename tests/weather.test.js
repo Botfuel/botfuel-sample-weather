@@ -2,6 +2,20 @@ const { Bot, BotTextMessage, UserTextMessage } = require('botfuel-dialog');
 const config = require('../test-config');
 
 describe('Test bot answers', () => {
+  test('Understand weather intent 1', async () => {
+    const bot = new Bot(config);
+    const { userId } = bot.adapter;
+    await bot.play([new UserTextMessage('Météo')]);
+    expect(bot.adapter.log[1]).toEqual(new BotTextMessage('Dans quelle ville?').toJson(userId));
+  });
+
+  test('Understand weather intent 2', async () => {
+    const bot = new Bot(config);
+    const { userId } = bot.adapter;
+    await bot.play([new UserTextMessage('Je veux la meteo')]);
+    expect(bot.adapter.log[1]).toEqual(new BotTextMessage('Dans quelle ville?').toJson(userId));
+  });
+
   test('Complete interaction', async () => {
     const bot = new Bot(config);
     const { userId } = bot.adapter;
