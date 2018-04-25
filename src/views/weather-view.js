@@ -71,6 +71,7 @@ class WeatherView extends PromptView {
             WebAdapter.getStaticUrl(
               `images/${description
                 .toLowerCase()
+                .replace(/ /g, '-')
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '')}.jpg`,
             ),
