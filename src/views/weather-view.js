@@ -1,4 +1,10 @@
-const { PromptView, BotTextMessage, BotImageMessage, WebAdapter } = require('botfuel-dialog');
+const {
+  PromptView,
+  BotTextMessage,
+  BotImageMessage,
+  QuickrepliesMessage,
+  WebAdapter,
+} = require('botfuel-dialog');
 
 const makeInfo = (entities) => {
   const location = entities.location && entities.location.values[0].value;
@@ -39,7 +45,11 @@ class WeatherView extends PromptView {
 
     // Ask for any missing information
     if (missingEntities.size !== 0) {
-      messages.push(new BotTextMessage(askInfo(missingEntities.keys().next().value)));
+      const entityName = missingEntities.keys().next().value;
+      messages.push(new BotTextMessage(askInfo(entityName)));
+      if (entityName === 'date') {
+        messages.push(new QuickrepliesMessage(["Aujourd'hui", 'Demain', 'Dans 7 jours']));
+      }
     }
 
     if (missingEntities.size === 0) {
