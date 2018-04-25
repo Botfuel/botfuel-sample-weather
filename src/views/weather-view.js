@@ -4,12 +4,9 @@ const makeInfo = (entities) => {
   const location = entities.location && entities.location.values[0].value;
   const date = entities.date && new Date(entities.date.values[0].milliseconds);
 
-  return `
-    D'accord. Je peux vous donner de l'information sur la météo 
-    ${location ? `à ${location}` : ''} ${
-    date ? `le ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}` : ''
-  }
-  `;
+  return `D'accord. Je peux vous donner de l'information sur la météo ${
+    location ? `à ${location}` : ''
+  }${date ? ` le ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}` : ''}`;
 };
 
 const askInfo = (entityName) => {
