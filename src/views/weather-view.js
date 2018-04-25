@@ -28,7 +28,8 @@ class WeatherView extends PromptView {
     const date = matchedEntities.date && new Date(matchedEntities.date.values[0].milliseconds);
 
     // Print info of obtained information
-    if (Object.keys(matchedEntities).filter(key => matchedEntities[key]).length !== 0) {
+    if (Object.keys(matchedEntities).filter(key => matchedEntities[key]).length !== 0 
+    && missingEntities.size !== 0) {
       messages.push(new BotTextMessage(makeInfo(matchedEntities)));
     }
 
@@ -38,17 +39,16 @@ class WeatherView extends PromptView {
     }
 
     if (missingEntities.size === 0) {
-      messages.push(new BotTextMessage(`Voila la météo pour ${location} le ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}.`));
-     /* if (date - Date.now() > 15) {
-        weatherData.climateAverages[0].month.[${date.getMonth()}]
+      if (date - Date.now() > 15 * 86400000) {
+        messages.push(new BotTextMessage("Desolé, On n'a pas les données pour cette date"));
+      } else {
+        messages.push(new BotTextMessage(`Voila la météo pour ${location} le ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}.`));
+        const maxTemp = weatherData.weather[0].maxtempC;
+        const minTemp = weatherData.weather[0].mintempC;
+        const description = weatherData.weather[0].hourly[0].lang_fr['0'].value;
+        messages.push(new BotTextMessage(`${description}, ${minTemp} - ${maxTemp} degrés Celsius`));
+        messages.push(new BotImageMessage(WebAdapter.getStaticUrl(`images/${description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}.jpg`)));
       }
-      else { */
-      const maxTemp = weatherData.weather[0].maxtempC;
-      const minTemp = weatherData.weather[0].mintempC;
-      const description = weatherData.weather[0].hourly[0].lang_fr['0'].value;
-      messages.push(new BotTextMessage(`${description}, ${minTemp}-${maxTemp} degrés Celsius`));
-      // }
-      messages.push(new BotImageMessage(WebAdapter.getStaticUrl(`images/${description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}.jpg`)));
     }
 
     return messages;
