@@ -1,19 +1,21 @@
-# botfuel-sample-tripplanner
+# botfuel-sample-weather
 
-This sample bot is used in the [**Trip Planner demo**](https://docs.botfuel.io/dialog/demos/trip-planner).
+Sample bot to ask about weather using World Weather Online API.
+
+Language: french
 
 ## How to run the bot
 
 Clone the repository:
 
 ```shell
-git clone git@github.com:Botfuel/botfuel-sample-tripplanner.git
+git clone git@github.com:Botfuel/botfuel-sample-weather.git
 ```
 
 Install dependencies:
 
 ```shell
-cd botfuel-sample-tripplanner
+cd botfuel-sample-weather
 npm install
 ```
 
@@ -32,7 +34,7 @@ If you set your app credentials right, you should see:
 2017-12-07T16:12:09.133Z - info: [Environment] BOTFUEL_APP_KEY=<YOUR_BOTFUEL_APP_KEY>
 ```
 
-Try typing `I want to travel`!
+Try typing `Quel temps fait-il?`
 
 ## Need help ?
 
