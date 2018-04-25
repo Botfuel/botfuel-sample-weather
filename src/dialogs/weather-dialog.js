@@ -7,37 +7,27 @@ class Weather extends PromptDialog {
       const date = matchedEntities.date && new Date(matchedEntities.date.values[0].milliseconds);
       const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
       const location = matchedEntities.location && matchedEntities.location.values[0].value;
-      const uri = `http://api.worldweatheronline.com/premium/v1/weather.ashx?key=556a3f21bf184a0c808150832182304&q=${location}&format=json&date=${formattedDate}&lang=fr`;
-      const requestResult = await request.get({
-        uri,
-        // headers: {
-        //   'X-StackifyID': 'V1|fde1ddbe-ac79-48f6-8804-f9bc727acec1|C59032|CD1|',
-        //   'X-WWO-Qpd-Left': '498',
-        //   'access-control-allow-origin': '*',
-        //   'access-control-allow-headers': 'content-type',
-        //   'X-node': 'haproxy_flex_02',
-        //   Vary: 'Accept-Encoding',
-        //   Age: '0',
-        //   'X-Cache': 'MISS',
-        //   'X-Webcelerate': 'WebCelerate - www.ukfast.co.uk/web-acceleration.html',
-        //   'Transfer-Encoding': 'chunked',
-        //   Connection: 'keep-alive',
-        //   'Accept-Ranges': 'bytes',
-        //   'Cache-Control': 'public, max-age=120',
-        //   'Content-Type': 'application/json; charset=utf-8',
-        //   Date: 'Tue, 24 Apr 2018 15:12:44 GMT',
-        //   Expires: 'Tue, 24 Apr 2018 15:14:45 GMT',
-        //   Via: 'WebCelerate',
-        // },
-      });
-      const parsedJSON = JSON.parse(requestResult);
-      const weatherData = parsedJSON.data;
+
+      const options = {
+        uri: 'http://api.worldweatheronline.com/premium/v1/weather.ashx',
+        qs: {
+          key: '556a3f21bf184a0c808150832182304', // World Weather Online key
+          q: location,
+          format: 'json',
+          date: formattedDate,
+          lang: 'fr',
+        },
+        headers: {},
+        json: true, // Automatically parses the JSON string in the response
+      };
+
+      const requestResult = await request(options);
+      const weatherData = requestResult.data;
       return { weatherData };
     }
 
     return null;
   }
-
 }
 
 Weather.params = {
