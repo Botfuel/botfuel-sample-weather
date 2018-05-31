@@ -18,12 +18,7 @@ Install dependencies:
 cd botfuel-sample-weather
 npm install
 ```
-
-Train the bot:
-
-```shell
-npm run train shell-config
-```
+Create the greetings, reset and weather intents together with their training sets.
 
 Start the bot:
 
