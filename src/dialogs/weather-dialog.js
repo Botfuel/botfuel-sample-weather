@@ -34,7 +34,7 @@ class WeatherDialog extends PromptDialog {
       const options = {
         uri: 'http://api.worldweatheronline.com/premium/v1/weather.ashx',
         qs: {
-          key: '556a3f21bf184a0c808150832182304', // World Weather Online key
+          key: '8c021b4e600b4cd8b24194452182606', // World Weather Online key
           q: location,
           format: 'json',
           date: formattedDate,
