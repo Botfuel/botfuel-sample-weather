@@ -20,6 +20,8 @@ const { Logger } = require('botfuel-dialog');
 
 const logger = Logger('WeatherDialog');
 
+const WEATHER_API_KEY = '';
+
 class WeatherDialog extends PromptDialog {
   async dialogWillDisplay(userMessage, { matchedEntities, missingEntities }) {
     // logger.debug('dialogWillDisplay', { matchedEntities, missingEntities });
@@ -34,7 +36,7 @@ class WeatherDialog extends PromptDialog {
       const options = {
         uri: 'http://api.worldweatheronline.com/premium/v1/weather.ashx',
         qs: {
-          key: '8c021b4e600b4cd8b24194452182606', // World Weather Online key
+          key: WEATHER_API_KEY, // World Weather Online key
           q: location,
           format: 'json',
           date: formattedDate,

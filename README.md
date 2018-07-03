@@ -4,12 +4,45 @@ Sample bot to ask about weather using World Weather Online API.
 
 Language: french
 
+## Create an app
+
+* Create a new app on Botfuel Trainer (https://app.botfuel.io). See the [Getting Started tutorial](https://docs.botfuel.io/platform/tutorials/getting-started) for how to create a new app.
+
+
+* Add an intent with lable `greetings` with the following training phrases for examples:
+  * Hi
+  * Hello
+  * Salut!
+  * Bonjour
+
+* Add an intent with lable `weather` with the following training phrases for examples:
+
+  * Il fait beau?
+  * Je veux la météo
+  * Météo
+  * Comment est la météo?
+  * Quel temps fait-t-il à Paris?
+
+* Add an intent with lable `reset` with the following training phrases for examples:
+
+  * Je veux recommencer
+  * Recommencer
+  * Nouvelle discussion
+
+You can get examples of intents here : https://github.com/Botfuel/botfuel-sample-tripplanner/blob/master/intents.xlsx
+
+## Get an API key on worldweatheronline.com
+
+Create an account  on [worldweatheronline.com](https://developer.worldweatheronline.com/api/)
+
+Copy the API key and paste it in file `src/dialogs/wether.dialog.js` in `const WEATHER_API_KEY = '';`
+
 ## How to run the bot
 
 Clone the repository:
 
 ```shell
-git clone git@github.com:Botfuel/botfuel-sample-weather.git
+git clone https://github.com/Botfuel/botfuel-sample-weather.git
 ```
 
 Install dependencies:
